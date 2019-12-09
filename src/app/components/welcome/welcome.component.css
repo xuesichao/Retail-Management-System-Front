@@ -11,3 +11,10 @@
 .welcome-top{
   margin-top:10%;
 }
+
+
+@media(min-width:576px){
+  .card {
+    width: 430px;
+  }
+}

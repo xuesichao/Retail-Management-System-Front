@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12">
       <form #ProductForm="ngForm" (ngSubmit)="onSubmit(ProductForm)">
         <div class="form-group">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-12">
               <label for="product_name">Search Product by Name</label>
             </div>
-            <div class="col-md-10">
+            <div class="col-sm-10">
               <input type="text" class="form-control" name="product_name" #productName="ngModel" [ngClass]="{'is-invalid': productName.errors && productName.touched}"
                 [(ngModel)]="product.product_name" minlength="1" maxlength="12" required>
               <div [hidden]="!productName.errors?.required" class="invalid-feedback">
@@ -17,14 +17,14 @@
                 Minimum 1 characters, maximum 12 characters
               </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-sm-2">
               <input type="submit" value="Search" class="btn btn-primary btn-block">
             </div>
           </div>
         </div>
       </form>
     </div>
-    <div class="col-md-3">
+    <div class="col-sm-3">
       <div class="card">
         <div class="header">
           <h5>Laptop</h5>
@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-sm-3">
       <div class="card">
         <div class="header">
           <h5>PC</h5>
@@ -62,7 +62,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-sm-3">
       <div class="card">
         <div class="header">
           <h5>Tablet</h5>
@@ -81,7 +81,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-sm-3">
       <div class="card">
         <div class="header">
           <h5>2-In-1</h5>
@@ -104,7 +104,7 @@
     <br>
     <br>
     <br>
-    <div class="col-md-12">
+    <div class="col-sm-12">
       <div class="card">
         <div class="header">
           <h4 class="title">Product</h4>

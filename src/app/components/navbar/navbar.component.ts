@@ -12,24 +12,45 @@ export class NavbarComponent implements OnInit {
   isLoggedIn: boolean;
   name: string;
   salesperson_id: string;
-  job_title:string;
-  store_id:string;
+  job_title: string;
+  store_id: string;
   // isSalesperson: boolean;
   // isStoreManager: boolean;
   isRegionManager: boolean;
+  isSalesperson: boolean;
+  isStoreManager: boolean;
   salespersons: Salesperson[];
+  sidebarVisible: boolean;
   constructor(
     private flashMessage: FlashMessagesService,
     private router: Router,
-    private storeManagerService: StoreManagerService
+    private storeManagerService: StoreManagerService,
   ) {
-
+    this.sidebarVisible = false;
   }
 
   ngOnInit() {
     this.salesperson_id = window.localStorage.getItem('salesperson_id');
-    if(window.localStorage.getItem('job_title')=="region_manager"){
-      this.isRegionManager=true;
+    this.job_title = window.localStorage.getItem('job_title');
+    // console.log(this.job_title);
+    if (this.job_title == 'region_manager') {
+      this.isRegionManager = true;
+      this.isStoreManager = false;
+      this.isSalesperson = false;
+    }
+    else if (this.job_title == 'store_manager') {
+      this.isRegionManager = false;
+      this.isStoreManager = true;
+      this.isSalesperson = false;
+    }
+    else if (this.job_title == null) {
+      this.isRegionManager = false;
+      this.isStoreManager = false;
+      this.isSalesperson = false;
+    } else {
+      this.isRegionManager = false;
+      this.isStoreManager = false;
+      this.isSalesperson = true;
     }
     if (this.salesperson_id != null) {
       this.isLoggedIn = true;
@@ -54,4 +75,34 @@ export class NavbarComponent implements OnInit {
     });
     this.router.navigate(['']);
   }
+
+  sidebarToggle() {
+    if (this.sidebarVisible === false) {
+      this.sidebarOpen();
+    } else {
+      this.sidebarClose();
+    }
+  }
+  sidebarOpen() {
+
+    const html = document.getElementsByTagName('html')[0];
+    const mainPanel = <HTMLElement>document.getElementsByClassName('main-panel')[0];
+
+    html.classList.add('nav-open');
+    if (window.innerWidth < 991) {
+      mainPanel.style.position = 'fixed';
+    }
+    this.sidebarVisible = true;
+  };
+  sidebarClose() {
+    const html = document.getElementsByTagName('html')[0];
+    const mainPanel = <HTMLElement>document.getElementsByClassName('main-panel')[0];
+    if (window.innerWidth < 991) {
+      setTimeout(function () {
+        mainPanel.style.position = '';
+      }, 500);
+    }
+    this.sidebarVisible = false;
+    html.classList.remove('nav-open');
+  };
 }
