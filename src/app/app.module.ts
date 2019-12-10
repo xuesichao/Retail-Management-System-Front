@@ -34,6 +34,7 @@ import { AggTopBusinessComponent } from './components/agg-top-business/agg-top-b
 import { AggRegionCompareComponent } from './components/agg-region-compare/agg-region-compare.component';
 import { BrowserHomeComponent } from './components/browser/browser-home/browser-home.component';
 import { AuthInterceptor } from './AuthInterceptor';
+import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { AuthInterceptor } from './AuthInterceptor';
   providers: [
     FlashMessagesService,LoginService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    {provide : LocationStrategy , useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })

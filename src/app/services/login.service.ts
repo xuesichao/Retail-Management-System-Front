@@ -17,7 +17,7 @@ export class LoginService {
   constructor(private http: HttpClient) {
   }
   login(account): Observable<LoginToken> {
-    let url = 'http://localhost:5000/account/login'
+    let url = 'https://hmygrace-infsci2560-web-backend-1.glitch.me/account/login'
     return this.http.post<LoginToken>(url, account, httpOptions);
   }
   //logout
